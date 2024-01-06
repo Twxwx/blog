@@ -14,11 +14,14 @@ $ hexo g      # 生成网站的静态文件到默认的设置文件public中
 $ hexo s      # 本地预览
 $ hexo d      # 自动生成网站静态文件，并部署到设定的仓库中
 
+$ hexo clean && hexo g && hexo s # 本地预览
 $ hexo clean && hexo g && hexo d # 一键部署
 ```
 
-### 图片文件存储
-存到themes/butterfly/source/img
+### 图片文件存储及使用
+1. 将图片存到themes/butterfly/source/img
+2.1 如果要使用github上的图片，将链接里的blob改为raw 
+2.2 如果要使用github上的图片，直接用相对路径 /img/xxx.jpg
 
 ### 浏览器清理缓存并刷新
 ``` bash 
@@ -80,4 +83,5 @@ Markdown有序列表写法非常简单，数字加小数点，然后加一个空
 
 ***
 
-![](https://github.com/Twxwx/Twxwx.github.io/tree/master/img/index_img.png)
+<!-- ![](https://github.com/Twxwx/Twxwx.github.io/raw/master/img/index_img.png) -->
+![](/img/index_img.png)
