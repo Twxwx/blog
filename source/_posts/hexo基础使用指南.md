@@ -1,14 +1,15 @@
 ---
 title: Hexo使用指南
 date: 2023-12-12 12:28:19
-tags:
+categories: 
+    - 指令
 ---
 
+[butterfly主题文档](https://butterfly.js.org/posts/21cfbf15/)
 
 ## hexo基本运行指令
 
 ``` bash
-$ hexo new "article name"  # 新建文章
 $ hexo clean  # 清理缓存
 $ hexo g      # 生成网站的静态文件到默认的设置文件public中
 $ hexo s      # 本地预览
@@ -16,6 +17,33 @@ $ hexo d      # 自动生成网站静态文件，并部署到设定的仓库中
 
 $ hexo clean && hexo g && hexo s # 本地预览
 $ hexo clean && hexo g && hexo d # 一键部署
+
+将文章的md文件删除，如果文章已经发布，那么还需要将.deploy_git也给删除
+```
+
+### 新建文章
+``` bash
+$ hexo new "article name"  # 新建文章
+
+文章基本设置
+---
+title: article name
+date: 2017-12-02 21:01:24
+categories:  #分类
+    - xxx
+tags:   #标签
+    - xx
+    - xx
+---
+```
+
+### git的一些操作
+``` bash
+git clone url # 从github克隆项目
+git remote -v # 查看项目关联的远程仓库
+git add . # 将代码存入暂存区
+git commit -m "xxxx" # 提交代码
+git push # 推送代码到远程仓库
 ```
 
 ### 图片文件存储及使用
