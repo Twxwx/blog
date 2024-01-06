@@ -10,22 +10,22 @@ tags:
 ``` bash
 $ hexo new "article name"  # 新建文章
 $ hexo clean  # 清理缓存
-$ hexo g      # 生成静态文件
+$ hexo g      # 生成网站的静态文件到默认的设置文件public中
 $ hexo s      # 本地预览
-$ hexo d      # 部署上线
+$ hexo d      # 自动生成网站静态文件，并部署到设定的仓库中
 
 $ hexo clean && hexo g && hexo d # 一键部署
 ```
 
 ### 图片文件存储
-存到themes/source/img
+存到themes/butterfly/source/img
 
 ### 浏览器清理缓存并刷新
 ``` bash 
 command + shift + R
 ```
 
-## markdown操作指令
+## Markdown操作指令
 
 ### 标题
 
@@ -37,3 +37,47 @@ command + shift + R
 ##### 五级标题
 ###### 六级标题
 ```
+
+### 无序列表
+Markdown无序列表写法非常简单，减号（或加号、星号）加一个空格即可。
+注：推荐使用减号，因为星号常用于斜粗体。
+``` markdown
+- Markdown无序列表
++ Markdown无序列表
+* Markdown无序列表
+```
+
+### 有序列表
+Markdown有序列表写法非常简单，数字加小数点，然后加一个空格即可。
+``` markdown
+1. Markdown有序列表
+2. Markdown有序列表
+```
+
+### 图片
+``` markdown
+![图片文字描述](img url)
+```
+
+### 链接
+``` markdown
+法1: <链接>
+法2: [文本](链接)
+```
+
+### 分割线
+``` markdown
+* * *
+***
+*****
+- - -
+---------------------------------------
+```
+
+***
+
+[参考文档](https://markdown.p2hp.com/basic-syntax/)
+
+***
+
+![](https://github.com/Twxwx/Twxwx.github.io/tree/master/img/index_img.png)
