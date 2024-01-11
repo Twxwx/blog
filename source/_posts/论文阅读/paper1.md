@@ -5,4 +5,4 @@ categories:
 tags:
 ---
 
-![Fig 1](/img/paper2/fig.png)
+![Fig 1](/img/paper/fig.png)
