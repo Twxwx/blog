@@ -37,21 +37,25 @@ tags:   #标签
 ---
 ```
 
-### git的一些操作
-``` bash
-git clone url # 从github克隆项目
-git remote -v # 查看项目关联的远程仓库
-git add . # 将代码存入暂存区
-git commit -m "xxxx" # 提交代码
-git push # 推送代码到远程仓库
-```
-
 ### 图片文件存储及使用
 1. 将图片存到themes/butterfly/source/img
-2.1 如果要使用github上的图片，将链接里的blob改为raw 
-2.2 如果要使用github上的图片，直接用相对路径 /img/xxx.jpg
+    - 如果要使用github上的图片，将链接里的blob改为raw 
+    - 如果要使用github上的图片，直接用相对路径 /img/xxx.jpg
 
-### 浏览器清理缓存并刷新
+## git的一些操作
+``` bash
+git clone {url} # 从github克隆项目
+git remote -v # 查看项目关联的远程仓库
+git add . # 将代码存入暂存区
+git commit -m {message} # 提交代码
+git push # 推送代码到远程仓库
+git pull # 拉取远程代码到本地
+git checkout {branch} # 切换分支
+git merge {branch} # 合并分支
+```
+
+
+## 浏览器清理缓存并刷新
 ``` bash 
 command + shift + R
 ```
@@ -111,5 +115,4 @@ Markdown有序列表写法非常简单，数字加小数点，然后加一个空
 
 ***
 
-<!-- ![](https://github.com/Twxwx/Twxwx.github.io/raw/master/img/index_img.png) -->
-![](/img/index_img.png)
+![图片](/img/index_img.png)
