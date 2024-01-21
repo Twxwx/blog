@@ -37,5 +37,11 @@ print(ord('A')) # 65
 print(chr(97)) # a
 ```
 
+### 遍历方法
+``` python
+# 用range来倒序遍历 len(nums) - 1 对应 start，-1为结束点但取不到（python遵循左闭右开），-1是步长，即每次迭代时减1。
+for i in range(len(nums) - 1, -1, -1):
+    print(nums[i])
+``` 
 
 
