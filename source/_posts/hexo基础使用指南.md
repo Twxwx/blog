@@ -18,12 +18,12 @@ $ hexo d      # 自动生成网站静态文件，并部署到设定的仓库中
 $ hexo clean && hexo g && hexo s # 本地预览
 $ hexo clean && hexo g && hexo d # 一键部署
 
-将文章的md文件删除，如果文章已经发布，那么还需要将.deploy_git也给删除
+# 将文章的md文件删除，如果文章已经发布，那么还需要将.deploy_git也给删除
 ```
 
 ### 新建文章
 ``` bash
-$ hexo new "article name"  # 新建文章
+$ hexo new article_name  # 新建文章
 
 文章基本设置
 ---
@@ -91,7 +91,7 @@ Markdown有序列表写法非常简单，数字加小数点，然后加一个空
 
 ### 图片
 ``` markdown
-![图片文字描述](img url)
+![图片文字描述](img url/path)
 ```
 
 ### 链接
@@ -108,11 +108,3 @@ Markdown有序列表写法非常简单，数字加小数点，然后加一个空
 - - -
 ---------------------------------------
 ```
-
-***
-
-[参考文档](https://markdown.p2hp.com/basic-syntax/)
-
-***
-
-![图片](/img/index_img.png)
