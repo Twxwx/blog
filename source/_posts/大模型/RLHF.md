@@ -1,8 +1,9 @@
 ---
-title: Reinforcement Learning from Human Feedback
+title: LLM训练流程
 date: 2024-01-20 17:47:51
 categories:
     - 大模型
 tags:
 ---
+
 
