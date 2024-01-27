@@ -8,10 +8,10 @@ tags:
 
 ## GPT-1
 
-![论文链接](https://www.cs.ubc.ca/~amuham01/LING530/papers/radford2018improving.pdf)
+[论文链接](https://www.cs.ubc.ca/~amuham01/LING530/papers/radford2018improving.pdf)
 
 1. 核心思路：
-在大量无标记数据集上训练 Transformer 的 Decoders 来做 NLG （语言生成），得到优秀的生成模型。然后根据下游任务微调（fine-tune）模型。
+- 在大量无标记数据集上训练 Transformer 的 Decoders 来做 NLG （语言生成），得到优秀的生成模型。然后根据下游任务微调（fine-tune）模型。
 
 2. 背景：
 - 有大量未标记的文本语料库，但用于学习特定任务的标记数据却很少。
@@ -43,13 +43,13 @@ tags:
 
 ## GPT-2
 
-![论文链接](https://d4mucfpksywv.cloudfront.net/better-language-models/language-models.pdf)
+[论文链接](https://d4mucfpksywv.cloudfront.net/better-language-models/language-models.pdf)
 
 1. 背景：
-当前的语言模型对数据的微弱变动十分敏感，像一个"狭隘"的专家系统。OperAI 想要构建能执行很多任务的通用系统，不需要为每个任务单独训练。
+- 当前的语言模型对数据的微弱变动十分敏感，像一个"狭隘"的专家系统。OperAI 想要构建能执行很多任务的通用系统，不需要为每个任务单独训练。
 
 2. 核心：
-GPT-2 弃用 fine-tune 采用 zero-shot。
+- GPT-2 弃用 fine-tune 采用 zero-shot。
 
 3. 相较于 GPT-1：
 - 去掉有监督的 fine-tune，仅剩无监督的 pre-train，不用再为特定任务 fine-tune。
@@ -59,17 +59,14 @@ GPT-2 弃用 fine-tune 采用 zero-shot。
 
 4. 训练策略
 - prompt 是为下游任务设计的一种模板或者范式。prompt 能够帮助预训练模型"回忆"起自己预训练学到的知识，实质是将下游任务和预训练任务的统一（近似）。采用 prompt 时，模型不利用样本做训练，即不对预训练模型的参数做任何更新。
-
 - Fine-tuning：用预训练模型去"迁就"下游任务，即根据下游任务添加辅助 loss 然后反向梯度更新预训练模型中的参数，这样的话也许不能很好的激发预训练模型的潜能，降低了模型的通用性。
-
 - Prompting：用下游任务去"迁就"预训练模型，即尽量让下游任务和预训练相似，充分发挥预训练模型的潜能，大幅提高模型通用性，训练模型难度也加大。
-
 - GPT-2 所用的策略接近 prompt，即给预训练语言模型的一个线索、提示，帮助它可以更好的理解人类的问题，能很好的发挥其语言生成的优势。
 
 
 ## GPT-3
 
-![论文链接](https://arxiv.org/pdf/2005.14165.pdf)
+[论文链接](https://arxiv.org/pdf/2005.14165.pdf)
 
 1. 核心
 - GPT-2 验证了在大规模高质量数据情况下，可以用 zero-shot learning 替换 fine-tuning，让模型在预训练时自己学习各种 prompt 对应的回答。
@@ -78,11 +75,8 @@ GPT-2 弃用 fine-tune 采用 zero-shot。
 
 2. In-context Learning（情景学习）
 - pre-train + fine-tune 就好比我们（模型）自学了一系列知识，但解题前老师（有标记样本数据）会教我们做几道相似的样题（微调模型），而 zero-shot learning 好比去掉了老师讲解样题，就要求我们（模型）在训练中自己学习到各种题目的解法，所以我们必须训练的更多。训练完成后我们（模型）也会更强大，更通用。
-
 - Zero-shot Learning (零样本学习)： 在没有任何样本/示例情况下，让预训练语言模型完成特定任务。放弃 fine-tune，仅通过大规模多领域的数据 pre-train，让模型在 Zero-shot setting 自己学会解决多任务的问题。GPT-2 证明了这是可行的策略。
-
 - One shot Learning (单样本学习)： 指在只有一个样本/示例的情况下，预训练语言模型完成特定任务。
-
 - Few-shot Learning (少样本或小样本学习)：指在只有少量样本/示例的情况下，预训练语言模型完成特定任务。
 
 3. IFT（Instruction Fine-Tuning） & CoT（Chain-of-thought） 
