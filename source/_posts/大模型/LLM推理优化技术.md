@@ -8,6 +8,8 @@ tags:
 
 ## Transformer结构优化
 
+![](/img/note/202401301832.png)
+
 ![](/img/note/202401301711.png)
 
 ![](/img/note/202401301808.png)
