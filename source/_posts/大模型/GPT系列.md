@@ -6,6 +6,14 @@ categories:
 tags:
 ---
 
+## 参数量对比
+
+![](/img/note/202403050930.png)
+
+## 模型对比
+
+![](/img/note/202403050931.png)
+
 ## GPT-1
 
 [论文链接](https://www.cs.ubc.ca/~amuham01/LING530/papers/radford2018improving.pdf)
@@ -72,6 +80,10 @@ tags:
 - GPT-2 验证了在大规模高质量数据情况下，可以用 zero-shot learning 替换 fine-tuning，让模型在预训练时自己学习各种 prompt 对应的回答。
 - 对于所有下游任务，GPT-3 不利用样本做训练，即不做模型参数的任何更新。
 - GPT-3 更进一步，加大模型参数和训练数据集，并且提出了一些新策略。
+
+### 采用交替密度和局部带状稀疏注意力模式
+
+![](/img/note/202403050932.png)
 
 2. In-context Learning（情景学习）
 - pre-train + fine-tune 就好比我们（模型）自学了一系列知识，但解题前老师（有标记样本数据）会教我们做几道相似的样题（微调模型），而 zero-shot learning 好比去掉了老师讲解样题，就要求我们（模型）在训练中自己学习到各种题目的解法，所以我们必须训练的更多。训练完成后我们（模型）也会更强大，更通用。
