@@ -25,6 +25,11 @@ tags:
 
 ![](/img/note/202403161708.png)
 
+### 模型方面
+
+![](/img/note/202403191054.png)
+![](/img/note/202403191055.png)
+
 ### 训练方面
 
 - pre-training 阶段在 Wudao Corpora上进行，此阶段未在任何pair数据上训练，其目标是训练出更适合embedding任务的pre-trained model。
