@@ -103,6 +103,9 @@ sorted(str) # 返回的是字符的集合
 print(ord('A')) # 65
 print(chr(97)) # a
 
+# 判断字符是否是数字
+c.isdigit()
+
 # 遍历字符串
 for ch in str:
     print(ch)
