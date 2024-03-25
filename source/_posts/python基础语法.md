@@ -25,6 +25,9 @@ hashtable['one'] = "1"
 # 根据 key 查找字典中的 value，如果指定键的值不存在时，返回该默认值
 hashtable.get(key, default=None) 
 
+# 删除值为key的value
+value = hashtable.pop(key)
+
 ```
 
 ### python defaultdict

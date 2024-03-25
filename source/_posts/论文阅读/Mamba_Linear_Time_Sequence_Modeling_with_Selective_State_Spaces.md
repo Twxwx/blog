@@ -2,7 +2,7 @@
 title: Mamba Linear-Time Sequence Modeling with Selective State Spaces
 date: 2024-01-19 22:26:01
 categories:
-    - 大模型
+    - 论文阅读
 tags:
 ---
 
