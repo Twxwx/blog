@@ -24,7 +24,7 @@ tags:
 
 ### BERT input representation
 
-- Bert模型输入数据要经过三种不同的表征层，如下所示分别是Token 、Segment 、Position Embedding，其中Token Embedding是对Token进行向量化，Segment Embedding是对句子左右位置的向量化，Position Embedding是对位置信息进行向量化即使得序列的位置信息获取方式不再是一种硬编码方式，而是使得变为一种可学习的方式，相比硬编码方式这种向量化的方式更具有泛化性。
+- Bert模型输入数据要经过三种不同的表征层，如下所示分别是Token 、Segment 、Position Embedding，其中Token Embedding是对Token进行向量化，Segment Embedding是对句子左右位置的向量化，Position Embedding是对位置信息进行向量化即使得序列的位置信息获取方式不再是一种硬编码方式，而是使得变为一种可学习的方式，相比硬编码方式这种向量化的方式更具有泛化性。将三种embedding相加得到最终输入。
 
 ![](/img/note/202401251545.png)
 
@@ -116,7 +116,7 @@ tags:
 
 - Deberta 模型是 2021 年由微软提出的模型，它的全名为 Decoding-enhanced BERT with disentangled attention，它主要针对 BERT, Roberta 模型从三个方面进行了改进：
 
-    1. 解耦注意力机制，将每个 token 的词向量分别用两个向量表示，即内容向量和位置向量。
+    1. 解耦注意力机制，将每个 token 的词向量分别用两个向量表示，即内容向量和位置向量，而 Bert 的输入是一个向量。
     2. 增强掩码解码器，向模型中添加了 token 的绝对位置
     3. 一种用于微调的虚拟对抗训练方法（SiFT）
 

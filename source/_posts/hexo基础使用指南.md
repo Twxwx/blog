@@ -2,7 +2,7 @@
 title: Hexo使用指南
 date: 2023-12-12 12:28:19
 categories: 
-    - 指令
+    - 基础语法
 ---
 
 [butterfly主题文档](https://butterfly.js.org/posts/21cfbf15/)
