@@ -2,7 +2,7 @@
 title: DeepSpeed
 date: 2024-01-20 17:47:51
 categories:
-    - 大模型
+    - 分布式训练框架
 tags:
 ---
 
