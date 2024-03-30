@@ -1,5 +1,5 @@
 ---
-title: python基础语法
+title: Python基础语法
 date: 2024-01-17 14:36:23
 categories:
     - 基础语法
