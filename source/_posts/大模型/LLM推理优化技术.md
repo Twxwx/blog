@@ -82,7 +82,7 @@ tags:
 
 - GQA将查询头分成 G 组，每个组共享一个 Key 和 Value 矩阵。GQA-G 是指具有 G 组的 grouped-query attention。GQA-1 具有单个组，因此具有单个 Key 和 Value，等效于 MQA。而 GQA-H 具有与头数相等的组，等效于MHA。
 
-## Transformer 结构优化（硬件层面）
+## Transformer 结构优化（硬件）
 
 ### Flash Attention
 
@@ -92,7 +92,8 @@ tags:
 
 #### 概述
 
-- 通过利用更高速的上层存储计算单元，减少对低速更下层存储器的访问次数，来提升模型的训练性能。
+- 通过利用更高速的上层存储计算单元SRAM，减少对低速更下层存储器HBM（高带宽内存）的访问次数，来提升模型的训练性能。
+- 主要关注 IO-aware（IO感知），进一步优化 GPU 显存的读写效率
 
 #### Standard Attention 
 

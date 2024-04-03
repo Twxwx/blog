@@ -6,6 +6,18 @@ categories:
 tags:
 ---
 
+## 概念理解
+
+- 参数量越小需要显存越少，计算量越小算的时间越少
+
+### 参数量
+
+- 参数量指的是深度神经网络中需要学习的参数数量。在深度学习中，每个神经元都有一个权重，这些权重是需要通过训练来确定的。深度神经网络中的参数量是指所有权重的数量之和，其中包括连接输入和输出的权重，以及所有神经元的偏置项。
+
+### 计算量
+
+- 计算量指的是在模型中进行前向传播和反向传播所需的浮点运算次数(通常将相乘后相加看做一次操作，乘法消耗大于加法消耗)。在深度学习中，神经网络的计算量通常是指卷积、乘法和加法操作的数量。由于深度神经网络具有非常大的计算量，因此需要强大的计算能力才能对其进行训练和推理。
+
 ## 模型架构
 
 ![](/img/note/202403032100.png)
@@ -16,7 +28,6 @@ tags:
 - 同时，词嵌入可以捕捉单词之间的语义关系，相似的单词在嵌入空间中会更接近。
 
 ``` python
-
 class Embedder(nn.Module):
     def __init__(self, vocab_size: int, d_model: int) -> None:
         super().__init__()
@@ -24,7 +35,6 @@ class Embedder(nn.Module):
     
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         return self.embed(x)
-
 ```
 
 ## Positional Encoding
@@ -32,7 +42,6 @@ class Embedder(nn.Module):
 ![](/img/note/202403032103.png)
 
 ``` python
-
 class PositionalEncoder(nn.Module):
     def __init__(self, d_model: int = 512, max_seq_len: int = 2048, base: int = 10000) -> None:
         super().__init__()
@@ -54,7 +63,6 @@ class PositionalEncoder(nn.Module):
         seq_len = x.shape[1]
         pe = self.pe[:seq_len].to(dtype=x.dtype)
         return x + pe
-
 ```
 
 ## Mask
