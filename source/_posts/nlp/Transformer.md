@@ -101,23 +101,18 @@ class MultiheadAttention(nn.Module):
     def forward(self, q: torch.Tensor, k: torch.Tensor, v: torch.Tensor, mask: Optional[torch.Tensor] = None):
         bsz = q.shape[0]
 
-        # translate [bsz, seq_len, d_model] to [bsz, seq_len, heads, d_k]
-        q = self.q_proj(q).view(bsz, -1, self.heads, self.d_k)
-        k = self.k_proj(k).view(bsz, -1, self.heads, self.d_k)
-        v = self.k_proj(v).view(bsz, -1, self.heads, self.d_k)
-
-        # translate [bsz, seq_len, heads, d_k] to [bsz, heads, seq_len, d_k]
-        q = q.transpose(1, 2)
-        k = k.transpose(1, 2)
-        v = v.transpose(1, 2)
+        # translate to [bsz, heads, seq_len, d_k]
+        q = self.q_proj(q).view(bsz, -1, self.heads, self.d_k).transpose(1, 2)
+        k = self.k_proj(k).view(bsz, -1, self.heads, self.d_k).transpose(1, 2)
+        v = self.k_proj(v).view(bsz, -1, self.heads, self.d_k).transpose(1, 2)
 
         # calculate attention
-        # scores: [bsz, heads, seq_len, d_k]
-        scores = self.attention(q, k, v, self.d_k, mask, self.dropout)
+        # out: [bsz, heads, seq_len, d_k]
+        out = self.attention(q, k, v, self.d_k, mask, self.dropout)
 
         # concat multi-heads
         # concat: [bsz, seq_len, d_model]
-        concat = scores.transpose(1, 2).contiguous().view(bsz, -1, self.d_model)
+        concat = out.transpose(1, 2).contiguous().view(bsz, -1, self.d_model)
         output = self.o_proj(concat)
         return output
 ```

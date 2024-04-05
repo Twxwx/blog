@@ -117,3 +117,11 @@ for i in range(len(nums) - 1, -1, -1):
     print(nums[i])
 ``` 
 
+## 表示最大值
+
+```python
+maxx = float('inf')
+maxx = math.inf
+minn = float('-inf')
+minn = -math.inf
+```
