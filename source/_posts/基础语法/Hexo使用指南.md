@@ -50,7 +50,9 @@ git add . # 将代码存入暂存区
 git commit -m {message} # 提交代码
 git push # 推送代码到远程仓库
 git pull # 拉取远程代码到本地
+git branch {newbranch} # 新建分支
 git checkout {branch} # 切换分支
+git push --set-upstream origin {newbranch} # 将本地dev分支推送到远程
 git merge {branch} # 合并分支
 ```
 
