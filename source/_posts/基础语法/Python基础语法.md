@@ -31,6 +31,58 @@ hashtable.get(key, default=None)
 value = hashtable.pop(key)
 ```
 
+## python 队列
+
+- 三种实现方式：Queue(较慢)、list(最慢)、deque(最快)
+
+### deque
+
+```python
+import collections
+# 创建双端队列
+q = collections.deque()
+# 入队，从队列右端(队尾)插入
+q.append(1) 
+# 入队，从队列左端(队头)插入
+q.appendleft(1)
+# 判断空
+if q
+# 出队，从队列左端(队头)删除一个元素，并返回该元素
+a = q.popleft()
+# 出队，从队列右端(队尾)删除一个元素，并返回该元素
+a = q.pop()
+# 队列大小
+len(q)
+```
+
+### list
+
+``` python
+# 从队尾插入
+q.append() 
+# 删除队头
+del q[0] 
+# 队列大小
+len(q) 
+# 队列为空
+if not q 
+```
+
+### Queue
+
+``` python
+import queue
+q = queue.Queue()
+# 从队尾插入
+q.put() 
+# 从队头删除，并返回
+q.get() 
+# 队列大小
+q.qsize() 
+# 队列是否为空
+q.empty() 
+```
+
 ## python defaultdict
 
 ### collections.defaultdict(list)
