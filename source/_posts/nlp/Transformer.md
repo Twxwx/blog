@@ -30,27 +30,21 @@ class Embedder(nn.Module):
 ![](/img/note/202403032103.png)
 
 ``` python
-class PositionalEncoder(nn.Module):
-    def __init__(self, d_model: int = 512, max_seq_len: int = 2048, base: int = 10000) -> None:
-        super().__init__()
-        self.d_model = d_model
-        inv_freq_half = 1.0 / (
-            base ** torch.arange(0, d_model, 2, dtype=torch.float) / d_model
-        )
-        inv_freq = torch.arange(0, d_model, dtype=inv_freq_half.dtype)
-        inv_freq[..., 0::2] = inv_freq_half
-        inv_freq[..., 1::2] = inv_freq_half
-        pos = torch.arange(max_seq_len, dtype=inv_freq.dtype)
-        pe = torch.einsum("i, j -> ij", pos, inv_freq)
-        pe[..., 0::2] = pe[..., 0::2].sin()
-        pe[..., 1::2] = pe[..., 1::2].cos()
-        self.register_buffer("pe", pe)
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor: 
-        x = x * math.sqrt(self.d_model)
-        seq_len = x.shape[1]
-        pe = self.pe[:seq_len].to(dtype=x.dtype)
-        return x + pe
+class PositionalEncoding(nn.Module):
+    def __init__(self, d_model = 512, max_len = 5000) -> None:
+        super(PositionalEncoding, self).__init__()
+        pe = torch.zeros(max_len, d_model)
+        position = torch.arange(0, max_len).unsqueeze(1)
+        div_term = torch.exp(torch.arange(0, d_model, 2) * (-math.log(10000.0) / d_model))
+        # pe:[max_len, d_model]
+        pe[:, 0::2] = torch.sin(position * div_term)
+        pe[:, 1::2] = torch.cos(position * div_term)
+        pe = pe.unsqueeze(0)
+        self.register_buffer('pe', pe)
+    
+    def forward(self, x):
+        x = x + Variable(self.pe[:, :x.size(1)], requires_grad=False)
+        return x
 ```
 
 ## Mask
@@ -97,7 +91,9 @@ class MultiHeadAttention(nn.Module):
         # 计算注意力分数 scores: [bsz, heads, seq_len, seq_len] 
         attn = torch.matmul(q, k.transpose(-1, -2)) / math.sqrt(self.d_k)
         # 生成 casual mask
-        if mask:
+        if mask is not None:
+            # mask: [bsz, max_seq_len, max_seq_len] -> [bsz, 1, max_seq_len, max_seq_len]
+            mask = mask.unsqueeze(1)
             attn = attn.masked_fill(mask == 0, -1e9)
         scores = F.softmax(attn, dim = -1)
         # [bsz, heads, seq_len, d_k]
@@ -211,7 +207,7 @@ class Encoder(nn.Module):
         super().__init__()
         self.N = N
         self.embed = Embedder(vocab_size, d_model)
-        self.pe = PositionalEncoder(d_model, max_seq_len)
+        self.pe = PositionalEncoding(d_model, max_seq_len)
         self.layers = nn.ModuleList(
             [EncoderLayer(d_model, heads, d_ff, dropout) for _ in range(N)]
         )
@@ -241,7 +237,7 @@ class Decoder(nn.Module):
         super().__init__()
         self.N = N
         self.embed = Embedder(vocab_size, d_model)
-        self.pe = PositionalEncoder(d_model, max_seq_len)
+        self.pe = PositionalEncoding(d_model, max_seq_len)
         self.layers = nn.ModuleList(
             [DecoderLayer(d_model, heads, d_ff, dropout) for _ in range(N)]
         )
