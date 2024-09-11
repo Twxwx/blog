@@ -35,3 +35,13 @@ tags:
 ## perplexity（困惑度、复杂度）
 
 ![](/img/note/202408261722.png)
+
+## 分类评价指标
+
+### 准确率（Acc）、错误率
+
+![](/img/note/202409051328.png)
+
+### 精确率（Precision）、召回率（Recall）、F1值
+
+![](/img/note/202409051329.png)
