@@ -2,7 +2,7 @@
 title: 推荐系统中的 bias 和 debias
 date: 2024-02-03 15:58:34
 categories:
-    - 推荐算法
+    - 搜广推
 tags:
 ---
 
