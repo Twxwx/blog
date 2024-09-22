@@ -132,35 +132,17 @@ tags:
 
 ![](/img/note/202403052242.png)
 
-- 从前面解耦注意力机制我们知道模型在输入时考虑的是单词之间的相对位置，但是有时候仅仅只考虑相对位置是不够的，因此需要引入单词的绝对位置。在 Deberta 模型中，我们仍然是使用的 MLM，即对序列中某个单词进行掩码，根据上下文来推断这个单词是什么。下面举个例子，说明一下为什么要引入绝对位置。
+- DeBERTa和BERT模型一样，也是使用MLM进行预训练的，在该模型中，模型被训练为使用 mask token 周围的单词来预测mask词应该是什么。 DeBERTa将上下文的内容和位置信息用于MLM。 解耦注意力机制已经考虑了上下文词的内容和相对位置，但没有考虑这些词的绝对位置，这在很多情况下对于预测至关重要。
 
-- 例如句子「a new store opened beside the new mall」其中，「store」和「mall」在用于预测时被掩码操作。尽管两个词的局部语境相似，但是它们在句子中扮演的句法作用是不同的。（例如，句子的主角是「store」而不是「mall」）。这些句法上的细微差别在很大程度上取决于词在句子中的绝对位置，因此考虑单词在语言建模过程中的绝对位置是非常重要的。DeBERTa 在 softmax 层之前合并了绝对词位置嵌入，在该模型中，模型根据词内容和位置的聚合语境嵌入对被掩码的词进行解码。
+- 如：给定一个句子 “a new store opened beside the new mall”，并用“store”和“mall”两个词 mask 以进行预测。 仅使用局部上下文（即相对位置和周围的单词）不足以使模型在此句子中区分store和mall，因为两者都以相同的相对位置在new单词之后。 为了解决这个限制，模型需要考虑绝对位置，作为相对位置的补充信息。 例如，句子的主题是“store”而不是“mall”。 这些语法上的细微差别在很大程度上取决于单词在句子中的绝对位置。
+
+- EMD层接在所有Transformer层之后，softmax之前用于注入绝对位置信息。在DeBERTa中，EMD层的数量一般为 n = 2，其中第一层EMD的I为绝对位置编码，之后每个EMD层的输出作为下一个EMD层的输入I。
 
 ### 用于微调的虚拟对抗训练方法
 
 - SiFT 全称为 Scale-invariant Fine-Tuning，是本文提出的一种新的虚拟对抗学习方法，对抗学习，其实就是向数据中加入一些干扰信息，模型在真实数据和虚假数据中进行动态博弈，通过这样的训练可以增强模型的鲁棒性。
 
 - 主要思想是：在标准化后的 word embedding 中添加扰动信息。当我们将 Deberta 应用到下游任务中时， SiFT 首先将 word embedding 变为标准化随机向量，然后在标准化后的向量中添加随机扰动信息。
-
-## Deberta v3
-
-### DeBERTa with Replaced token detection (RTD)
-
-![](/img/note/202403061100.png)
-
-### Gradient-Disentangled Embedding Sharing
-
-1. Embedding Sharing (ES)
-
-![](/img/note/202403061101.png)
-
-2. No Embedding Sharing (NES)
-
-![](/img/note/202403061102.png)
-
-3. Gradient-Disentangled Embedding Sharing (GDES)
-
-![](/img/note/202403061103.png)
 
 ## Text to Text Transfer Transformer（T5）
 
