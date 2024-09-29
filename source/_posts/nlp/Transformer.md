@@ -60,6 +60,8 @@ class PositionalEncoding(nn.Module):
 
 ![](/img/note/202403042001.png)
 
+- query为主体，使用key将value嵌入到query中
+
 ``` python 
 
 class MultiHeadAttention(nn.Module):

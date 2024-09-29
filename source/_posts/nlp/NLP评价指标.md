@@ -63,6 +63,48 @@ tags:
 
 ![](/img/note/202409181507.png)
 
+### ROC和AUC
+
+#### 概念
+
+- ROC 的横坐标是 false positive rate(FPR)，纵坐标是 true positive rate(TPR)。对某个分类器而言，我们可以根据其在测试样本上的表现得到一个TPR和FPR点对。这样，此分类器就可以映射成ROC平面上的一个点。调整这个分类器分类时候使用的阈值，我们就可以得到一个经过(0, 0)，(1, 1)的曲线，这就是此分类器的ROC曲线。
+
+- Area Under roc Curve(AUC) 的值就是处于 ROC 曲线下方的面积大小。通常，AUC的值介于0.5到1.0之间，较大的AUC代表了较好的性能，是一种用来度量分类模型好坏的一个标准。
+
+#### 计算方式
+
+- AUC的物理含义不仅是ROC曲线下的面积，AUC还有另外一个物理含义就是：给定正样本Ｍ个，负样本Ｎ个，以及他们的预测概率，那么AUC的含义就是穷举所有的正负样本对，如果正样本的预测概率大于负样本的预测概率，那么就+1；如果如果正样本的预测概率等于负样本的预测概率，那么就＋0.5,　如果正样本的预测概率小于负样本的预测概率，那么就+0；最后把统计处理的个数除以Ｍ×Ｎ就得到AUC.
+
+```python
+def AUC(label,pre):
+    pos = []  # 正样本index
+    neg = []  # 负样本index
+    auc = 0
+    for i in range(len(label)):
+        if(label[i] == 1):
+            pos.append(i)
+        else:
+            neg.append(i)
+    for i in pos:
+        for j in neg:
+            if(pre[i] > pre[j]):
+                auc += 1
+            if(pre[i] == pre[j]):
+                auc += 0.5
+            else:
+                auc += 0
+    return auc / (len(pos) * len(neg))
+
+if __name__ == "__main__":
+    # 1为正样本，0为负样本
+    label = [1, 0, 0, 0, 1, 0, 1, 0] 
+    pre = [0.9, 0.8, 0.3, 0.1, 0.4, 0.9, 0.66, 0.7]
+    print(AUC(label, pre))
+    from sklearn import metrics
+    auc = metrics.roc_auc_score(label, pre)
+    print('sklearn', auc)
+```
+
 ## 多分类任务评价指标
 
 - 考虑类别不平衡的情况，即不同类别的样本数量可能不同
