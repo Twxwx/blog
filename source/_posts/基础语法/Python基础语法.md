@@ -9,9 +9,9 @@ tags:
 ## python数组
 
 ``` python
-# 三种创建方式
-nums = [[0 for _ in range(3)] for _ in range(5)] # 5*3 的二维数组初始化为0
-nums = list()
+# 5*3 的二维数组初始化为0
+nums = [[0 for _ in range(3)] for _ in range(5)] 
+nums = [[0] * 3 for _ in range(5)]
 ```
 
 ## python字典
@@ -167,6 +167,10 @@ for ch in str:
 # 等效于 for (int i = len(nums) - 1, i > -1, i--)
 for i in range(len(nums) - 1, -1, -1):
     print(nums[i])
+
+# 得到数组元素的下标和值
+for i, num in enumerate(nums):
+    print(i, num)
 ``` 
 
 ## 表示最大值
@@ -176,4 +180,20 @@ maxx = float('inf')
 maxx = math.inf
 minn = float('-inf')
 minn = -math.inf
+```
+
+## 排序函数
+
+```python
+nums = [2, 24, 8, 6, 35, 7, 22, 30]
+nums.sort() # sort作用在list上，不产生新的列表 [2, 6, 7, 8, 22, 24, 30, 35]
+nums.sort(reverse=True) # [35, 30, 24, 22, 8, 7, 6, 2]
+new_nums = sorted(nums) # sorted可以对所有可迭代的对象进行排序，产生新的列表 [2, 6, 7, 8, 22, 24, 30, 35]
+```
+
+```python
+# 如果对元组列表进行排序，首先比较第一个元组元素，如果相同则再比较第二个元组元素，以此类推
+nums = [(0, 0, 1), (-1, 1, 2), (1, 1, 3), (-2, 2, 4), (0, 2, 6), (0, 2, 5), (2, 2, 7)]
+nums.sort()
+print(nums) # [(-2, 2, 4), (-1, 1, 2), (0, 0, 1), (0, 2, 5), (0, 2, 6), (1, 1, 3), (2, 2, 7)]
 ```
